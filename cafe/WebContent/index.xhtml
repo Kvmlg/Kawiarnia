@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/templates/page-template.xhtml">
+
+	<ui:define name="pageContent">
+
+		<section id="start">
+		<h1 id="cafename">Kawiarnia Lafete</h1>
+		<h1 id="about">Kawa to nasza specjalność</h1>
+
+		</section>
+		<section id="offert">
+		<h1 id="nameSec">GALERIA</h1>
+		<div id="galleryitems">
+			<h:graphicImage id="image-1" class="gallery"
+				value="#{resource['template:img/jeden.jpg']}" />
+			<h:graphicImage id="image-2" class="gallery"
+				value="#{resource['template:img/dwa.jpg']}" />
+			<h:graphicImage id="image-3" class="gallery"
+				value="#{resource['template:img/trzy.jpg']}" />
+			<h:graphicImage id="image-4" class="gallery"
+				value="#{resource['template:img/cztery.jpg']}" />
+			<h:graphicImage id="image-5" class="gallery"
+				value="#{resource['template:img/piec.jpg']}" />
+			<h:graphicImage id="image-6" class="gallery"
+				value="#{resource['template:img/szesc.jpg']}" />
+		</div>
+
+		</section>
+
+		<section id="menu">
+		<h1 id="nameSec">MENU</h1>
+		<h1 id="menuHead">
+			<span>Kawy</span>
+		</h1>
+		<div id="items">
+			<br /> <span id="itemName">Cappuccino</span> <span id="itemPrice">12,99zł</span><br />
+			<span id="itemName">Czarna</span> <span id="itemPrice">11,99zł</span><br />
+			<span id="itemName">Biała</span> <span id="itemPrice">10,99zł</span><br />
+		</div>
+		<h1 id="menuHead">
+			<span>Desery</span>
+		</h1>
+		<br />
+		<div id="items">
+			<span id="itemName">Deser lodowy</span> <span id="itemPrice">12,99zł</span><br />
+			<span id="itemName">Szarlotka</span> <span id="itemPrice">11,99zł</span><br />
+			<span id="itemName">Sernik</span> <span id="itemPrice">10,99zł</span><br />
+		</div>
+		</section>
+
+		<script>
+			window.onscroll = function() {
+				scrollFunction()
+			};
+
+			function scrollFunction() {
+				if (document.body.scrollTop > 80
+						|| document.documentElement.scrollTop > 80) {
+					document.getElementById("menuhead").style.padding = "0px 0px";
+					document.getElementById("menuhead").style.height = "10%";
+					document.getElementById("logopic").style.height = "75px";
+					document.getElementById("menuhead").style.backgroundColor = "rgba(0,0,0, 0.8)";
+				} else {
+					document.getElementById("menuhead").style.padding = "10px 50px";
+					document.getElementById("logopic").style.height = "100px";
+					document.getElementById("menuhead").style.backgroundColor = null;
+				}
+			}
+		</script>
+
+
+	</ui:define>
+
+</ui:composition>
+</html>
