@@ -56,7 +56,7 @@ section {
 }
 
 #offert {
-	background-color: rgb(236, 252, 251);
+	background-color: #f5eee9;
 }
 
 #page_wrapper {
@@ -85,7 +85,7 @@ section {
 	left: 23%;
 	transform: translate(-50%, -50%);
 	color: #fff;
-	font-family: 'Nunito Sans', sans-serif;
+	font-family: RW Chancery L, cursive;
 }
 
 #galleryitems{
@@ -106,8 +106,9 @@ section {
 }
 
 .gallery:hover{
-	transform: scale(1.5);
+	transform: scale(1.2);
 	transition: 0.4s;
+	border-radius: 0px;
 }
 
 #image-1{
@@ -170,16 +171,14 @@ section {
 #footer{ 
     clear: both;
     position: relative;
-    height: 200px;
+    height: 300px;
     margin-top: -200px;
-    background:gray;
+    background:#DCDCDC;
 }
 
 
 #footerDiv{
-	position: relative;
-	left: 50%;
-	transform: translate(-50%, -50%);
+
 	width: 80%;
 }
 
@@ -188,16 +187,24 @@ padding-left:0 !important;
 }
 
 .foter{
+	position: relative;
 	text-align:center;
-	width:25%;
 	height:100%;
-	margin-top:10%;
-	padding-left:10%;
-	display:inline;
+	margin-top:7%;
+	padding-left:8%;
+	left:25%;
 }
 
 .foterIMG{
-	height:100%;
+	height:50px;
 	width:auto;
 	}
+
+footer{
+	padding-top:10%;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display:flex;
+}
 	
