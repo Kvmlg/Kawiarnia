@@ -6,14 +6,16 @@
 
 	<header id="menuhead">
 		<a href="#" id="logo">
-		<h:graphicImage id="logopic" value = "#{resource['template:img/cafe100.png']}" alt="Logo"></h:graphicImage>  
+		<h:graphicImage id="logopic" value = "#{resource['template:img/cafe100.png']}" alt="Logo" href="/cafe#start"></h:graphicImage>  
 		</a>
 
 		<ul id="menu">
-			<li><a href="#start">Start</a></li>
-			<li><a href="#mennu">Menu</a></li>
-			<li><a href="#offert">Galeria</a></li>
-			<li><a href="#footer">Kontakt</a></li>
+			<li><a href="/cafe#start">Start</a></li>
+			<li><a href="/cafe#mennu">Menu</a></li>
+			<li><a href="/cafe#offert">Galeria</a></li>
+			<li><a href="/cafe#footer">Kontakt</a></li>
+			<li><a href="/cafe/login.xhtml"><h:graphicImage id="loginpic" value = "#{resource['template:img/user.png']}" alt="Logo" ></h:graphicImage></a></li>
+			
 		</ul>
 	</header>
 

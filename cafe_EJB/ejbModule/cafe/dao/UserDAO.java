@@ -1,5 +1,6 @@
 package cafe.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,31 @@ public class UserDAO {
 	@PersistenceContext
 	protected EntityManager em;
 
+	public User getUserFromDatabase(String login, String pass) {
+		
+		User u = null;
+
+		if (login.equals("admin") && pass.equals("admin")) {
+			u = new User();
+			u.setEmail("kamil@mail.pl");
+			u.setPassword("1212");
+			u.setName("Jan");
+			u.setSurname("Kowalski");
+		}
+
+		return u;
+	}
+	
+public List<String> getUserRolesFromDatabase(User user) {
+		
+		ArrayList<String> roles = new ArrayList<String>();
+		
+		if (user.getEmail().equals("kamil@mail.pl")) {
+			roles.add("admin");
+		}
+		
+		return roles;
+	}
 
 	public void create(User user) {
 		em.persist(user);
