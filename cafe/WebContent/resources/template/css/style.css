@@ -140,6 +140,18 @@ section {
 	top: 10px;
 }
 
+table{
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 30%;
+}
+
+th .nameitem{
+text-align: left;
+	
+}
+
 #items{
 	position: relative;
 	left: 50%;
@@ -247,4 +259,8 @@ input[type="submit"]{
   	width:50%;
   	color:white;
   	margin-left:30%;
+}
+
+.logoutButton{
+  display:block;
 }

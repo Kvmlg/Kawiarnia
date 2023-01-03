@@ -26,25 +26,26 @@ public class UserDAO {
 	public User getUserFromDatabase(String login, String pass) {
 		
 		User u = null;
+		Query query = em.createQuery("select u from User u where u.email = :login and u.password = :pass");
+		         query.setParameter("login", login);
+		         query.setParameter("pass", pass);
 
-		if (login.equals("admin") && pass.equals("admin")) {
-			u = new User();
-			u.setEmail("kamil@mail.pl");
-			u.setPassword("1212");
-			u.setName("Jan");
-			u.setSurname("Kowalski");
+		try {         
+			u=(User) query.getSingleResult();
+		} catch (Exception e) {	
+			 u = null;
 		}
 
 		return u;
 	}
 	
+	
 public List<String> getUserRolesFromDatabase(User user) {
 		
 		ArrayList<String> roles = new ArrayList<String>();
 		
-		if (user.getEmail().equals("kamil@mail.pl")) {
-			roles.add("admin");
-		}
+			roles.add(user.getRole());
+		
 		
 		return roles;
 	}

@@ -1,7 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
 	<header id="menuhead">
@@ -14,7 +15,27 @@
 			<li><a href="/cafe#mennu">Menu</a></li>
 			<li><a href="/cafe#offert">Galeria</a></li>
 			<li><a href="/cafe#footer">Kontakt</a></li>
-			<li><a href="/cafe/login.xhtml"><h:graphicImage id="loginpic" value = "#{resource['template:img/user.png']}" alt="Logo" ></h:graphicImage></a></li>
+			<li>
+			
+			<c:choose>
+    		<c:when test="#{not empty remoteClient.details.surname}">
+        	<p>Witaj, <br/>
+        		<h:outputText
+				value="#{remoteClient.details.name} "/>
+        	</p>
+        	<li>
+        	<h:form style="display:inline;">
+        	<h:commandLink action="#{loginBB.doLogout()}"><h:graphicImage id="logoutpic" value = "#{resource['template:img/logout.png']}" alt="logout" ></h:graphicImage></h:commandLink>
+        	</h:form>
+        	</li>
+    		</c:when>
+   			<c:otherwise>
+       		<p><a href="/cafe/login.xhtml"><h:graphicImage id="loginpic" value = "#{resource['template:img/user.png']}" alt="Logo" ></h:graphicImage></a></p>
+    		</c:otherwise>
+			</c:choose>
+			
+			
+			</li>
 			
 		</ul>
 	</header>
