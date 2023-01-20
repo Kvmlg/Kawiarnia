@@ -31,6 +31,10 @@ public class Product implements Serializable {
 	@OneToMany(mappedBy="product")
 	private List<Orderproduct> orderproducts;
 
+	//bi-directional many-to-one association to ShopingCart
+	@OneToMany(mappedBy="product")
+	private List<ShopingCart> shopingCarts;
+
 	public Product() {
 	}
 
@@ -94,6 +98,28 @@ public class Product implements Serializable {
 		orderproduct.setProduct(null);
 
 		return orderproduct;
+	}
+
+	public List<ShopingCart> getShopingCarts() {
+		return this.shopingCarts;
+	}
+
+	public void setShopingCarts(List<ShopingCart> shopingCarts) {
+		this.shopingCarts = shopingCarts;
+	}
+
+	public ShopingCart addShopingCart(ShopingCart shopingCart) {
+		getShopingCarts().add(shopingCart);
+		shopingCart.setProduct(this);
+
+		return shopingCart;
+	}
+
+	public ShopingCart removeShopingCart(ShopingCart shopingCart) {
+		getShopingCarts().remove(shopingCart);
+		shopingCart.setProduct(null);
+
+		return shopingCart;
 	}
 
 }

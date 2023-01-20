@@ -35,14 +35,16 @@
     <h:inputText type="text"  value="#{loginBB.login}" class="text"  p:placeholder="Login"  required="true" requiredMessage="podaj email"/>
     <br/>
 
-    <h:inputSecret type="password" value="#{loginBB.pass}" class="text"  p:placeholder="Password"  required="true" requiredMessage="podaj hasło"/>
+    <h:inputSecret type="password" value="#{loginBB.pass}" class="text"  p:placeholder="Hasło"  required="true" requiredMessage="podaj hasło"/>
     <br/>
+    
     
     <h:messages id="messages"/>
     
-    <h:commandButton class="signin"  value="Sign In" update="messages" action="#{loginBB.doLogin()}"/>
-
-	
+    <h:commandButton class="signin"  value="Zaloguj" update="messages" action="#{loginBB.doLogin()}"/>
+    <br/>
+        <br/>
+	<a href="/cafe/public/register.xhtml" style="text-decoration:none; padding-left:22%; ">Zarejestruj się</a>
   </h:form>
 
 </div>

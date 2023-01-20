@@ -1,5 +1,6 @@
 package cafe.dao;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,10 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.servlet.http.HttpSession;
 
+import cafe.entities.Order;
+import cafe.entities.Product;
 import cafe.entities.User;
 
 //DAO - Data Access Object for Person entity
@@ -18,7 +22,7 @@ import cafe.entities.User;
 @Stateless
 public class UserDAO {
 
-
+	private User user = new User();
 	// Dependency injection (no setter method is needed)
 	@PersistenceContext
 	protected EntityManager em;
@@ -66,10 +70,12 @@ public List<String> getUserRolesFromDatabase(User user) {
 		return em.find(User.class, id);
 	}
 
+
+	
 	public List<User> getFullList() {
 		List<User> list = null;
 
-		Query query = em.createQuery("select p from user p");
+		Query query = em.createQuery("select u from User u");
 
 		try {
 			list = query.getResultList();
@@ -121,5 +127,7 @@ public List<String> getUserRolesFromDatabase(User user) {
 
 		return list;
 	}
+	
+
 
 }

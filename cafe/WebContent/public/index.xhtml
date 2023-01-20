@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/page-template.xhtml">
 
@@ -39,39 +41,81 @@
 		<h1 id="menuHead">
 			<span>Kawy</span>
 		</h1>
-		<h:form id="form-table" style="margin-bottom:1em;">
-			<h:dataTable value="#{ProductBB.list}" var="p">
-				<h:column>
-					<f:facet name = "header" class="nameitem">
-					<h:outputText value="nazwa" />
-					<h:outputText value="#{p.name}" />
-					</f:facet>    
-					
-				</h:column>
+		<h:form id="form-kawy" style="margin-bottom:1em;">
+		<div id="edit">
+			<h:dataTable value="#{productBB.getListKawy()}" var="p" id="itemstab">
 			
 				<h:column>
-					<f:facet name = "header" id="prizeitem">
-					15zł
-					<br/>
-					16zł
-					</f:facet>    
+					<f:facet name = "header">
+					</f:facet> 
+							<h:outputText value="#{p.name}" id="nazw" />
 				</h:column>
+				<h:column>
+					<f:facet name = "header" class="priceitem">
+
+					</f:facet>
+					<h:outputText value="#{p.price}" />    
+				</h:column>
+				
+				<h:column>
+					<f:facet name = "header" class="priceitem">
+					</f:facet>
+					<c:choose>
+					<c:when test="#{not empty remoteClient.details.surname}">
+					<h:commandButton value="Kup" action="#{shopingCartBB.addToCart(p)}" /> 
+					</c:when>
+					<c:otherwise>
+					<h:commandButton value="Kup"  action="#{loginBB.toLogin()}" /> 
+					</c:otherwise>
+					</c:choose>
+
+					 
+				</h:column>
+				
 			</h:dataTable>
-		</h:form>
-		<div id="items">
-			<br /> <span id="itemName">Cappuccino</span> <span id="itemPrice">12,99zł</span><br />
-			<span id="itemName">Czarna</span> <span id="itemPrice">11,99zł</span><br />
-			<span id="itemName">Biała</span> <span id="itemPrice">10,99zł</span><br />
-		</div>
+			</div>
+			</h:form>
+		
+
 		<h1 id="menuHead">
 			<span>Desery</span>
 		</h1>
+				<h:form id="form-desery" style="margin-bottom:1em;">
+			<h:dataTable value="#{productBB.getListDesery()}" var="p" id="itemstab">
+			
+				<h:column>
+					<f:facet name = "header">
+					</f:facet> 
+							<h:outputText value="#{p.name}" id="nazw" />
+				</h:column>
+				<h:column>
+					<f:facet name = "header" class="priceitem">
+
+					</f:facet>
+					<h:outputText value="#{p.price}" />    
+				</h:column>
+				
+				<h:column>
+					<f:facet name = "header" class="priceitem">
+					</f:facet>
+					<c:choose>
+					<c:when test="#{not empty remoteClient.details.surname}">
+					<h:commandButton value="Kup" action="#{shopingCartBB.addToCart(p)}" /> 
+					</c:when>
+					<c:otherwise>
+					<h:commandButton value="Kup"  action="#{loginBB.toLogin()}" /> 
+					</c:otherwise>
+					</c:choose>
+
+					 
+				</h:column>
+				
+			</h:dataTable>
+			</h:form>
+			
+			
 		<br />
-		<div id="items">
-			<span id="itemName">Deser lodowy</span> <span id="itemPrice">12,99zł</span><br />
-			<span id="itemName">Szarlotka</span> <span id="itemPrice">11,99zł</span><br />
-			<span id="itemName">Sernik</span> <span id="itemPrice">10,99zł</span><br />
-		</div>
+		
 		</section>
 
 		<script>

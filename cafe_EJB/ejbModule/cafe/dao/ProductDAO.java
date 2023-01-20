@@ -8,8 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-
-
+import cafe.entities.Order;
+import cafe.entities.Orderproduct;
 import cafe.entities.Product;
 
 
@@ -47,12 +47,13 @@ public class ProductDAO {
 		// 1. Build query string with parameters
 		String select = "select p ";
 		String from = "FROM Product p ";
+		String where = "where p.category = :item";
 
-
-
-		Query query = em.createQuery(select + from );
+		String item = (String) searchParams.get("item");
 		
-		String zapytanie = query.toString();
+		Query query = em.createQuery(select + from + where);
+		
+			query.setParameter("item", item);
 
 
 		try {
@@ -78,6 +79,10 @@ public class ProductDAO {
 
 		return list;
 	}
+	
+
+	
+
 
 	
 

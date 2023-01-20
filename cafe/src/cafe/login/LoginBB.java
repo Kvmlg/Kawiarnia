@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.simplesecurity.RemoteClient;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,7 +26,8 @@ public class LoginBB {
 
 	private String login;
 	private String pass;
-
+	@Inject
+	ExternalContext extcontext;
 	public String getLogin() {
 		return login;
 	}
@@ -43,6 +46,9 @@ public class LoginBB {
 
 	@Inject
 	UserDAO userDAO;
+	
+	@Inject
+	Flash flash;
 
 	public String doLogin() {
 		FacesContext ctx = FacesContext.getCurrentInstance();
@@ -61,7 +67,6 @@ public class LoginBB {
 		
 		RemoteClient<User> client = new RemoteClient<User>(); //create new RemoteClient
 		client.setDetails(user);
-		
 		List<String> roles = userDAO.getUserRolesFromDatabase(user); //get User roles 
 		
 		if (roles != null) { //save roles in RemoteClient
@@ -73,6 +78,10 @@ public class LoginBB {
 		//store RemoteClient with request info in session (needed for SecurityFilter)
 		HttpServletRequest request = (HttpServletRequest) ctx.getExternalContext().getRequest();
 		client.store(request);
+		
+		HttpSession session = (HttpSession) extcontext.getSession(true);
+		session.setAttribute("user", user);
+
 
 		// and enter the system (now SecurityFilter will pass the request)
 		return PAGE_MAIN;
@@ -85,7 +94,11 @@ public class LoginBB {
 		// - all objects within session will be destroyed
 		// - new session will be created (with new ID)
 		session.invalidate();
-		return PAGE_LOGIN;
+		return PAGE_MAIN;
 	}
 	
+	public String toLogin() {
+
+		return PAGE_LOGIN;
+	}
 }

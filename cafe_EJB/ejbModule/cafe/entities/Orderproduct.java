@@ -14,22 +14,21 @@ import javax.persistence.*;
 public class Orderproduct implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
+
 	private OrderproductPK id;
 
-	private String quantity;
+	private int quantity;
 
 	//bi-directional many-to-one association to Order
-	@ManyToOne
-	@JoinColumn(name="orders_id", insertable=false, updatable=false)
+	@Id
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="order_id", nullable = false, insertable=false, updatable=false, referencedColumnName = "id")
 	private Order order;
 
-	//bi-directional many-to-one association to Product
-	@ManyToOne
-	
-	@JoinColumn(name="products_id", insertable=false, updatable=false)
+	@Id
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="products_id", nullable = false, insertable=false, updatable=false, referencedColumnName = "id")
 	private Product product;
-	
 
 	public Orderproduct() {
 	}
@@ -42,11 +41,11 @@ public class Orderproduct implements Serializable {
 		this.id = id;
 	}
 
-	public String getQuantity() {
+	public int getQuantity() {
 		return this.quantity;
 	}
 
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
